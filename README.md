@@ -1,1 +1,2 @@
-# jest-selenium-browserstack-example
+# Jest Selenium BrowserStack Example
+
