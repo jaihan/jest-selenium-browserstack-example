@@ -67,9 +67,11 @@ describe('webdriver', () => {
         .withCapabilities(capabilities)
         .build();
 
-      await driver.get(
-        `http://localhost:3050/`,
-      );
+        await driver.get(
+          `http://${
+            capabilities['browserstack.user']
+          }.browserstack.com/test.html`,
+        );
     } catch (error) {
       console.error('connetion error', error);
     }
