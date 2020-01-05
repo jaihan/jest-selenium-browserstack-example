@@ -1,8 +1,8 @@
 import { Builder, By, until } from 'selenium-webdriver';
-//import firefox from 'selenium-webdriver/firefox';
+import firefox from 'selenium-webdriver/firefox';
 import path from 'path';
 
-var firefox = require('geckodriver');
+//var firefox = require('geckodriver');
 const webdriver = require('selenium-webdriver');
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000 * 60 * 5
@@ -16,22 +16,24 @@ describe('webdriver', () => {
   let driver;
 
   beforeAll(async () => {
-    // const options = new firefox.Options();
-    // options.headless();
-    // driver = new Builder()
-    //   .forBrowser('firefox')
-    //   .setFirefoxOptions(options)
-    //   .withCapabilities(webdriver.Capabilities.firefox())
-    //   .build();
-    var driver = new Builder().withCapabilities({
-      browserName: 'chrome',
-      javascriptEnabled: true,
-      acceptSslCerts: true,
-      'webdriver.firefox.bin': firefox.path
-  }).usingServer('http://localhost:4444/wd/hub').build();
+    const options = new firefox.Options();
+    options.headless();
 
-  driver.manage().window().maximize();
+ 
+    driver = new Builder()
+    .forBrowser('firefox')
+    .usingServer('http://127.0.0.1:4444/wd/hub')
+    .setFirefoxOptions(options)
+    .build();
 
+  //   driver = new Builder().withCapabilities({
+  //     browserName: 'firefor',
+  //     javascriptEnabled: true,
+  //     acceptSslCerts: true,
+  //     'webdriver.firefox.bin': firefox.path
+  // })
+  // .usingServer('http://localhost:4444/wd/hub')
+  // .build();
 
     // eslint-disable-next-line no-undef
     await driver.get('file://' + path.join(__dirname, 'test.html'));
