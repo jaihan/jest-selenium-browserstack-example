@@ -20,12 +20,11 @@ describe('webdriver', () => {
   beforeAll(async () => {
     const options = await new chrome.Options();
     options.headless();
-
  
     driver = await new Builder()
     .forBrowser('chrome')
     .usingServer('http://127.0.0.1:4444/wd/hub')
-    .setFirefoxOptions(options)
+    //.setFirefoxOptions(options)
     .build();
 
   //   driver = new Builder().withCapabilities({
