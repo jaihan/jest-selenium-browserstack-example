@@ -6,6 +6,7 @@ import { querySelector } from "./helpers";
 import { doSignInGoogle } from "./login";
 import { log } from 'util';
 
+
 //var firefox = require('geckodriver');
 const webdriver = require('selenium-webdriver');
 
@@ -45,6 +46,8 @@ export const manageTimeouts = (driver, timeout = defaultTimeout) => {
         { implicit: timeout, pageLoad: timeout, script: timeout });
 };
   
+const width = 640;
+const height = 480;
 
 describe('webdriver', () => {
   let driver;
@@ -56,7 +59,10 @@ describe('webdriver', () => {
     driver = await new Builder()
     .forBrowser('chrome')
     .usingServer('http://127.0.0.1:4444/wd/hub')
-    .setFirefoxOptions(options)
+    // setChromeOptions(
+    //   new chrome.Options().headless().windowSize({width, height}))
+  .setFirefoxOptions(
+      new firefox.Options().headless().windowSize({width, height}))
     .build();
 
   //   driver = new Builder().withCapabilities({
@@ -70,7 +76,8 @@ describe('webdriver', () => {
 
     // eslint-disable-next-line no-undef
     //await driver.get('file://' + path.join(__dirname, 'test.html'));
-    await driver.get('http://localhost:3050/');
+    //await driver.get('https://sandbox.gesrec.com/');
+    await driver.get('https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=439100244725-028cp3a9tl420rlrjamacjgspberei5e.apps.googleusercontent.com&as=ZTLWgJEebXPy6CNQVwctNg&destination=https%3A%2F%2Fdance-68169.firebaseapp.com&approval_state=!ChRsZDk0WU1Jc3AzdFc0ejJKd0dBXxIfd19DM2NVTF91LVVmOEhuU1JuY2dubXFPWUY0ZV9CWQ%E2%88%99AJDr988AAAAAXiarEt8eVMY_XZQGJhDjxkLwJxpgiNUQ&oauthgdpr=1&xsrfsig=ChkAeAh8T2B-j4J_mfhxd1jbjCAgsglNsq9vEg5hcHByb3ZhbF9zdGF0ZRILZGVzdGluYXRpb24SBXNvYWN1Eg9vYXV0aHJpc2t5c2NvcGU&flowName=GeneralOAuthFlow');
     //await driver.sleep(5000);
   });
 
@@ -106,6 +113,10 @@ describe('webdriver', () => {
 
     //expect("https://sandbox.gesrec.com/").toEqual(await driver.getCurrentUrl())
   //})
+
+  it('index >> should show the right title', async () => {
+    expect( await driver.getTitle()).toBe('GESREC');   
+});
 
   it('should click on navbar button to display a drawer', async () => {
  

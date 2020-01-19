@@ -2,7 +2,7 @@ version: 2
 jobs:
   build_selenium:
     docker:
-      - image: circleci/node:10.15.3
+      - image: circleci/node:10.16-browsers
       - image: selenium/standalone-chrome:3.141.59-yttrium
     working_directory: ~/repo
     steps:
