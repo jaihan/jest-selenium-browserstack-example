@@ -2,6 +2,12 @@ import webdriver from 'selenium-webdriver';
 // it will download and use BrowserStackLocal binary file behind the scene
 // you may check ~/.browserstack dir
 import browserstack from 'browserstack-local';
+import { doSignInGoogle } from "./login";
+import firefox from 'selenium-webdriver/firefox';
+import chrome from 'selenium-webdriver/chrome';
+
+
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000 * 60 * 5
 
 const local = new browserstack.Local();
 const until = webdriver.until;
@@ -67,16 +73,12 @@ describe('webdriver', () => {
         .withCapabilities(capabilities)
         .build();
 
-        await driver.get(
-          `http://${
-            capabilities['browserstack.user']
-          }.browserstack.com/test.html`,
-        );
+        await driver.get('https://sandbox.gesrec.com/');
     } catch (error) {
       console.error('connetion error', error);
     }
     // IMPORTANT! Selenium and Browserstack needs more time than regular Jest
-  }, 10000);
+  });
 
   afterAll(async () => {
     try {
@@ -86,29 +88,42 @@ describe('webdriver', () => {
       console.error('disconnection error', error);
     }
     // IMPORTANT! Selenium and Browserstack needs a lot of time!
-  }, 10000);
+  });
 
-  test(
-    'test',
-    async () => {
-      // may help with debugging
-      // const src = await driver.getPageSource();
-      // console.log(src);
-      try {
-      const btn = await getElementById(driver, 'test-button');
-      await btn.click();
 
-      const output = await getElementById(driver, 'output');
-      const outputVal = await output.getAttribute('value');
+  it('index >> should show the right title', async () => {
+    expect( await driver.getTitle()).toBe('GESREC');   
+});
 
-      console.log('outputVal', outputVal);
+  it('should click on navbar button to display a drawer', async () => {
+
+    await doSignInGoogle(driver);
+    console.log('automate =>', await driver.getCurrentUrl());
+    expect("https://sandbox.gesrec.com/").toEqual(await driver.getCurrentUrl())
+  })
+
+
+  // test(
+  //   'test',
+  //   async () => {
+  //     // may help with debugging
+  //     // const src = await driver.getPageSource();
+  //     // console.log(src);
+  //     try {
+  //     const btn = await getElementById(driver, 'test-button');
+  //     await btn.click();
+
+  //     const output = await getElementById(driver, 'output');
+  //     const outputVal = await output.getAttribute('value');
+
+  //     console.log('outputVal', outputVal);
       
-      expect(outputVal).toEqual('Something');
-    } catch (error) {
-      console.error('disconnection error', error);
-    }
-    },
-    // IMPORTANT! 5s timeout should be sufficient complete test
-    10000
-  );
+  //     expect(outputVal).toEqual('Something');
+  //   } catch (error) {
+  //     console.error('disconnection error', error);
+  //   }
+  //   },
+  //   // IMPORTANT! 5s timeout should be sufficient complete test
+  //   10000
+  // );
 });

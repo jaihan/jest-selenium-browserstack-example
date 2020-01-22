@@ -37,17 +37,29 @@ describe('webdriver', () => {
     await driver.quit();
   }, 15000);
 
-  test(
-    'test',
-    async () => {
-      const btn = await getElementById(driver, 'test-button');
-      await btn.click();
+  it('index >> should show the right title', async () => {
+    expect( await driver.getTitle()).toBe('GESREC');   
+});
 
-      const output = await getElementById(driver, 'output');
-      const outputVal = await output.getAttribute('value');
+  it('should click on navbar button to display a drawer', async () => {
 
-      expect(outputVal).toEqual('Something');
-    },
-    10000,
-  );
+    await doSignInGoogle(driver);
+    console.log('555555555555555', await driver.getCurrentUrl());
+    expect("https://sandbox.gesrec.com/").toEqual(await driver.getCurrentUrl())
+  })
+  
+
+  // test(
+  //   'test',
+  //   async () => {
+  //     const btn = await getElementById(driver, 'test-button');
+  //     await btn.click();
+
+  //     const output = await getElementById(driver, 'output');
+  //     const outputVal = await output.getAttribute('value');
+
+  //     expect(outputVal).toEqual('Something');
+  //   },
+  //   10000,
+  // );
 });

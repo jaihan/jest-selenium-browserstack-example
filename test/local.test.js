@@ -76,8 +76,7 @@ describe('webdriver', () => {
 
     // eslint-disable-next-line no-undef
     //await driver.get('file://' + path.join(__dirname, 'test.html'));
-    //await driver.get('https://sandbox.gesrec.com/');
-    await driver.get('https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=439100244725-028cp3a9tl420rlrjamacjgspberei5e.apps.googleusercontent.com&as=ZTLWgJEebXPy6CNQVwctNg&destination=https%3A%2F%2Fdance-68169.firebaseapp.com&approval_state=!ChRsZDk0WU1Jc3AzdFc0ejJKd0dBXxIfd19DM2NVTF91LVVmOEhuU1JuY2dubXFPWUY0ZV9CWQ%E2%88%99AJDr988AAAAAXiarEt8eVMY_XZQGJhDjxkLwJxpgiNUQ&oauthgdpr=1&xsrfsig=ChkAeAh8T2B-j4J_mfhxd1jbjCAgsglNsq9vEg5hcHByb3ZhbF9zdGF0ZRILZGVzdGluYXRpb24SBXNvYWN1Eg9vYXV0aHJpc2t5c2NvcGU&flowName=GeneralOAuthFlow');
+    await driver.get('https://sandbox.gesrec.com/');
     //await driver.sleep(5000);
   });
 
@@ -119,11 +118,9 @@ describe('webdriver', () => {
 });
 
   it('should click on navbar button to display a drawer', async () => {
- 
-   
+
     await doSignInGoogle(driver);
-    console.log('dirver get now url 3');
-    console.log(await driver.getCurrentUrl())
+    console.log('555555555555555', await driver.getCurrentUrl());
     expect("https://sandbox.gesrec.com/").toEqual(await driver.getCurrentUrl())
   })
   

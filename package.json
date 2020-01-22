@@ -51,5 +51,8 @@
   },
   "transform": {
     "\\.js$": "<rootDir>/node_modules/babel-jest"
+  },
+  "dependencies": {
+    "firebase-tools": "^7.12.1"
   }
 }
