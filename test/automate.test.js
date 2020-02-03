@@ -20,7 +20,7 @@ const capabilities = {
   browserName: 'chrome',
   os: 'Windows',
   'browserstack.local': true,
-  // 'browserstack.debug': true,
+  'browserstack.debug': true,
   'browserstack.user': 'amstrikerdev1',
   'browserstack.key': 'RiV7yFpwqWrKpL2cviw4',
 };
@@ -60,6 +60,8 @@ const getElementById = async (driver, id, timeout = 10000) => {
   return await driver.wait(until.elementIsVisible(el), timeout);
 };
 
+
+
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 60e3;
 describe('webdriver', () => {
   let driver;
@@ -68,12 +70,34 @@ describe('webdriver', () => {
     try {
       // BrowserStackLocal has to be ready before webdriver initialization
       await start();
+      let addr = '116.206.138.146'
+      let option = new chrome.Options().addArguments(`--proxy-server=http://${addr}`)
+        
+
       driver = new webdriver.Builder()
         .usingServer('http://hub-cloud.browserstack.com/wd/hub')
         .withCapabilities(capabilities)
+        .setChromeOptions(option)
         .build();
 
+        // driver.executeScript("window.navigator.geolocation.getCurrentPosition=function(success){"+
+        // "var position = {\"coords\" : {\"latitude\": \"16.7827\",\"longitude\": \"96.1771\"}};"+
+        // "success(position);}");
+
+        // const options = await new chrome.Options();
+        // console.log('options.setProxy()', options.setProxy());
+        // console.log('options.getProxy()', options.getProxy());
+       
+        //console.log('******* geo *******:',  await driver.get('https://ipapi.co/json/'));
+
+        
+
         await driver.get('https://sandbox.gesrec.com/');
+       
+       // await getGeolocation();
+        //await driver.executeScript("window.navigator.geolocation.getCurrentPosition = function(success) { success({coords: {latitude: 16.7827, longitude: 96.1771}}); }");
+
+        //console.error('ipapi json', await driver.get('https://ipapi.co/json/'));
     } catch (error) {
       console.error('connetion error', error);
     }

@@ -58,11 +58,11 @@ describe('webdriver', () => {
  
     driver = await new Builder()
     .forBrowser('chrome')
-    .usingServer('http://127.0.0.1:4444/wd/hub')
+    .usingServer('http://116.206.138.146:4444/wd/hub')
     // setChromeOptions(
     //   new chrome.Options().headless().windowSize({width, height}))
-  .setFirefoxOptions(
-      new firefox.Options().headless().windowSize({width, height}))
+  // .setFirefoxOptions(
+  //     new firefox.Options().headless().windowSize({width, height}))
     .build();
 
   //   driver = new Builder().withCapabilities({

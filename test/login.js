@@ -47,18 +47,29 @@ export const doSignInGoogle = async(driver) => {
     await driver.sleep(timeout * 5);
     await getElementByPath(driver, "//input[@name='password']").sendKeys("mikro####0000")
     await getElementById(driver, "passwordNext").click();
-    //test%%%%007
+    // selenium.mikro@gmail.com
+    // selenium%1234
     await driver.sleep(timeout * 2);
     const str = await driver.getCurrentUrl()
     console.log('444444444444444444=>', str);
-    const newURL = await str.substring(0, str.indexOf("?"));
-    console.log('newURL=>', newURL);
 
-    if (newURL === 'https://accounts.google.com/signin/v2/challenge/selection' 
-    || 'https://accounts.google.com/signin/v2/challenge/pwd'){
-        console.log('if newURL=>', 'navigate');
-        await driver.navigate().to("https://sandbox.gesrec.com/");
-    }
+
+    //await getElementByPath(driver, '//*[@id="view_container"]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div/div/ul/li[5]/div').click();
+    // await getElementByPath(driver, '//*[@id="phoneNumberId"]').sendKeys("9796258769")
+    // await getElementById(driver, 'gradsIdvPhoneNext').click();
+
+    // await driver.sleep(timeout * 2);
+    // const str55 = await driver.getCurrentUrl()
+    // console.log('5555555555=>', str55);
+
+    // const newURL = await str.substring(0, str.indexOf("?"));
+    // console.log('newURL=>', newURL);
+
+    // if (newURL === 'https://accounts.google.com/signin/v2/challenge/selection' 
+    // || 'https://accounts.google.com/signin/v2/challenge/pwd'){
+    //     console.log('if newURL=>', 'navigate');
+    //     await driver.navigate().to("https://sandbox.gesrec.com/");
+    // }
     
    // await getElementByPath(driver, '//*[@id="view_container"]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div/div/ul/li[3]').click();
     //await getElementById(driver, "profileIdentifier").click();
@@ -76,5 +87,10 @@ export const doSignInGoogle = async(driver) => {
     // await getElementById(driver, "passwordNext").click();
     await manageTimeouts(driver);
     await driver.sleep(timeout * 17);
+
+
+    // Take screenshot of results page. Save to disk.
+
+  
    
 }

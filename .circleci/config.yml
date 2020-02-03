@@ -27,7 +27,7 @@ jobs:
      
       - run:
           name: install selenium-hub
-          command: docker run -d --rm -p 4444:4444 --net grid --name selenium-hub selenium/hub:3.141.59-yttrium
+          command: docker run -d --rm  -p 116.206.138.146:4444 --net grid --name selenium-hub selenium/hub:3.141.59-yttrium
           
       - run:
           name: install selenium-node
