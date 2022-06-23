@@ -41,7 +41,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "geckodriver": "^1.16.0",
     "jest": "^23.6.0",
-    "jsdom": "^12.2.0",
+    "jsdom": "^16.5.0",
     "prettier": "^1.14.3",
     "rimraf": "^2.6.2",
     "rollup": "^0.66.2",
